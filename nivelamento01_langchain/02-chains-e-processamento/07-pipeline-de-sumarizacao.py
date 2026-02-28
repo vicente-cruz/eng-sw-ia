@@ -35,11 +35,12 @@ map_chain = map_prompt | llm | StrOutputParser()
 prepare_map_inputs = RunnableLambda(lambda docs: [{"context": d.page_content} for d in docs])
 map_stage = prepare_map_inputs | map_chain.map()
 
+prepare_reduce_input = RunnableLambda(lambda summaries: [{"context": "\n".join(summaries)}])
+
 #LCEL reduce stage: combine summaries into one final summary
 reduce_prompt = PromptTemplate.from_template("Combine the following summaries into a single concise summary::\n{context}")
 reduce_chain = reduce_prompt | llm | StrOutputParser()
 
-prepare_reduce_input = RunnableLambda(lambda summaries: [{"context": "\n".join(summaries)}])
 pipeline = map_stage | prepare_reduce_input | reduce_chain
 
 # chain_sumarize = load_summarize_chain(llm, chain_type="map_reduce", verbose=True)
