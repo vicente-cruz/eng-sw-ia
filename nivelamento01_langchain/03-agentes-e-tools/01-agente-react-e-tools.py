@@ -4,6 +4,8 @@ from langchain_openai import ChatOpenAI
 # from langchain.agents import create_react_agent, AgentExecutor
 # from langchain_core.prompts import PromptTemplate
 from langchain.agents import create_agent
+# Para puxar do hub
+from langsmith import Client
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -73,10 +75,15 @@ Thought:{agent_scratchpad}"""
 
 # Deprecated: versoes 0.X do LangChain
 # agent_chain = create_react_agent(llm, tools, prompt, stop_sequence=False)
+
+client = Client()
+PROMPT_HUB = client.pull_prompt("hwchase17/react")
+
 agent = create_agent(
     model=llm,
     tools=tools,
-    system_prompt=SYSTEM_PROMPT
+    # system_prompt=SYSTEM_PROMPT
+    system_prompt=PROMPT_HUB.template
 )
 
 # Deprecated: versoes 0.X do LangChain
