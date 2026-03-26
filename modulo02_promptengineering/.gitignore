@@ -1,0 +1,7 @@
+# Environments
+.env
+.env.example
+venv
+.vscode
+requirements.txt
+01-tipos-de-prompts/__pycache__
