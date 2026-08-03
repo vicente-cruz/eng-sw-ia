@@ -1,0 +1,29 @@
+.footer {
+  background: rgba(8, 12, 24, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(108, 92, 231, 0.3);
+  box-shadow: 0 -1px 20px rgba(108, 92, 231, 0.15);
+  padding: 20px;
+  text-align: center;
+}
+
+.text {
+  margin: 0;
+  color: rgba(230, 250, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 16px;
+  }
+
+  .text {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+}
